@@ -8,3 +8,4 @@ langchain-google-genai
 langchain-huggingface
 langchain-chroma
 pdfminer.six
+sentence-transformers
