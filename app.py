@@ -171,7 +171,7 @@ st.markdown("""
 # ── Row 0 : CV upload + role filter ──────────────────────────────────────────
 c0a, c0b = st.columns([1, 1], gap="large")
 with c0a:
-    st.markdown('<div class="section-label">📄 CV INPUT (JSON)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">📄 CV INPUT (PDF)</div>', unsafe_allow_html=True)
     uploaded = st.file_uploader("Upload JSON hasil analisis CV", type=["pdf"],
                                 label_visibility="collapsed")
 with c0b:
