@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import json
 import math
-from job_finder import match_cv_to_jobs, extract_cv
+from job_finder import match_cv_to_jobs, job_processing, extract_cv
 from dotenv import load_dotenv
 from st_files_connection import FilesConnection
 import pandas as pd
