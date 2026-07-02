@@ -137,7 +137,7 @@ def match_cv_to_jobs(cv_path: str, value_to_extract: str):
         - Arrays must always exist, even if empty.
         - Return 'top_jobs' from retrieved Job Vacancies ONLY.
         - Try to always return data based on existing knowledge of cv_profile and job_listings.
-        - Return 'job_relevance' based on 'cv_profile' and 'job_listings' with Application Tracking System (ATS) scoring method.
+        - Return 'job_relevance' and top_jobs 'match_score' based on 'cv_profile' and 'job_listings' with Application Tracking System (ATS) scoring method.
         - Return 'cv_quality' purely based on relevance to general {value_to_extract} competence.
 
         Candidate Profile:
