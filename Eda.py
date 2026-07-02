@@ -25,10 +25,6 @@ except FileNotFoundError:
     st.error("File 'jobs_final.csv' tidak ditemukan di folder ini.")
     st.stop()
 
-# DATA PREVIEW
-st.subheader("📋 Ringkasan Dataset")
-st.dataframe(df.head(10)) 
-
 # Pre-processing Data Gaji
 df['avg_salary'] = (df['min_salary'].fillna(0) + df['max_salary'].fillna(0)) / 2
 
@@ -116,3 +112,7 @@ fig_skills = px.bar(top_skills, x='Total', y='Skill', orientation='h',
 
 fig_skills.update_layout(yaxis={'categoryorder':'total ascending'})
 st.plotly_chart(fig_skills, use_container_width=True)
+
+# DATA PREVIEW
+st.subheader("📋 Ringkasan Dataset")
+st.dataframe(df.head(10))
