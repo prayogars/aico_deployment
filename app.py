@@ -6,6 +6,8 @@ from job_finder import match_cv_to_jobs, job_processing, extract_cv
 from dotenv import load_dotenv
 from st_files_connection import FilesConnection
 import pandas as pd
+import boto3
+import tempfile
 
 # Import secret from env
 load_dotenv()
@@ -154,6 +156,18 @@ def rec_card(rec):
   <div class="rec-desc">{rec['description']}</div>
 </div>"""
 
+def load_and_process_from_s3(bucket: str, key: str, meta_data_cols: list):
+    tmp_path = None
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
+            s3.download_fileobj(bucket, key, tmp)
+            tmp_path = tmp.name
+
+        job_processing(tmp_path, meta_data_cols)
+
+    finally:
+        if tmp_path and os.path.exists(tmp_path):
+            os.remove(tmp_path)
 # ── Load data ─────────────────────────────────────────────────────────────────
 
 def load_json(src):
