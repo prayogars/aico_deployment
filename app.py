@@ -191,6 +191,7 @@ if uploaded is not None:
     with conn.open("aijobs-streamlit/final-data/jobs_final.csv", mode="rt", encoding="utf-8", errors="ignore") as f:
         df = pd.read_csv(f, sep=';')
         df.to_csv('dataset/jobs_final_connection_aws.csv', index=False, sep=';')
+    job_processing('dataset/jobs_final_connection_aws.csv', ['job_category'])
     match_cv_to_jobs(uploaded, role_user)
 st.markdown('<hr class="aica-divider">', unsafe_allow_html=True)
 
