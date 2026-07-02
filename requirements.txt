@@ -11,3 +11,4 @@ pdfminer.six
 sentence-transformers
 s3fs
 st-files-connection
+boto3
