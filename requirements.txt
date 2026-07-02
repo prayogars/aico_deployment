@@ -9,3 +9,5 @@ langchain-huggingface
 langchain-chroma
 pdfminer.six
 sentence-transformers
+s3fs
+st-files-connection

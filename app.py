@@ -3,6 +3,12 @@ import os
 import json
 import math
 from job_finder import match_cv_to_jobs, extract_cv
+from dotenv import load_dotenv
+from st_files_connection import FilesConnection
+import pandas as pd
+
+# Import secret from env
+load_dotenv()
 
 st.set_page_config(
     page_title="AI Career Advisor",
@@ -181,6 +187,10 @@ with c0b:
 
 path = ""
 if uploaded is not None:
+    conn = st.connection('s3', type=FilesConnection)
+    with conn.open("aijobs-streamlit/final-data/jobs_final.csv", mode="rt", encoding="utf-8", errors="ignore") as f:
+        df = pd.read_csv(f, sep=';')
+        df.to_csv('dataset/jobs_final_connection_aws.csv', index=False, sep=';')
     match_cv_to_jobs(uploaded, role_user)
 st.markdown('<hr class="aica-divider">', unsafe_allow_html=True)
 

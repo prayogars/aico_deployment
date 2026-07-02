@@ -67,7 +67,8 @@ def job_processing(file_path, meta_data_cols: list):
     db_dynamic = Chroma.from_documents(
         documents=chunks,
         embedding=embedding_model_hf,
-        persist_directory="./chroma_db/dynamic_csv"
+        host="13.212.26.129",
+        port=8000
     )
     print("Stored to vector db using Hugging Face.")
         
@@ -104,8 +105,9 @@ def match_cv_to_jobs(cv_path: str, value_to_extract: str):
             
     # Load index  
     dynamic_store = Chroma(
-        persist_directory="./chroma_db/dynamic_csv",
-        embedding_function=embedding_model_hf
+        embedding_function=embedding_model_hf,
+        host="13.212.26.129",
+        port=8000
     )
 
     # Find matching job

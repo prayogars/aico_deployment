@@ -3,6 +3,13 @@ import plotly.express as px
 import streamlit as st
 from collections import Counter
 import plotly.graph_objects as go
+from dotenv import load_dotenv
+import os
+from st_files_connection import FilesConnection
+
+
+# Load API
+load_dotenv()
 
 # Konfigurasi Halaman
 st.set_page_config(page_title="EDA Dashboard", layout="wide")
@@ -11,7 +18,9 @@ st.title("📊 Exploratory Data Analysis (EDA)")
 
 # MEMUAT DATA
 try:
-    df = pd.read_csv('dataset/jobs_final.csv', sep=';')
+    conn = st.connection('s3', type=FilesConnection)
+    with conn.open("aijobs-streamlit/final-data/jobs_final.csv", mode="rt", encoding="utf-8", errors="ignore") as f:
+        df = pd.read_csv(f, sep=';')
 except FileNotFoundError:
     st.error("File 'jobs_final.csv' tidak ditemukan di folder ini.")
     st.stop()
