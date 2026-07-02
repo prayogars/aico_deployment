@@ -213,7 +213,7 @@ st.markdown('<hr class="aica-divider">', unsafe_allow_html=True)
 c1a, c1b = st.columns([1, 1], gap="large")
 
 with c1a:
-    st.markdown('<div class="section-label">📊 CV SCORE</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">📊 CV SCORE BY ROLE</div>', unsafe_allow_html=True)
     st.markdown(f"""
 <div class="score-wrap">
   <div><div class="score-num">{sc['cv_quality']}</div><div class="score-lbl">CV Quality</div></div></div>
@@ -232,7 +232,7 @@ st.markdown('<hr class="aica-divider">', unsafe_allow_html=True)
 c2a, c2b = st.columns([1, 1], gap="large")
 
 with c2a:
-    st.markdown('<div class="section-label">🎯 CV RELEVANCE-TO-ROLE SCORE</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">🎯 PREDICTED CV ATS SCORE</div>', unsafe_allow_html=True)
     st.markdown(
         f'<div style="display:flex;justify-content:center;margin-top:.5rem;">{gauge_svg(sc["job_relevance"])}</div>',
         unsafe_allow_html=True)
