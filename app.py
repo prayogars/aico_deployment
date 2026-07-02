@@ -205,7 +205,6 @@ with c0b:
 path = ""
 if uploaded is not None:
     load_and_process_from_s3(bucket='aijobs-streamlit', key='final-data/jobs_final.csv', meta_data_cols=['job_category'])
-    job_processing('dataset/jobs_final_connection_aws.csv', ['job_category'])
     match_cv_to_jobs(uploaded, role_user)
 st.markdown('<hr class="aica-divider">', unsafe_allow_html=True)
 
