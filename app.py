@@ -9,6 +9,9 @@ import pandas as pd
 import boto3
 import tempfile
 
+# Initialize s3
+s3 = boto3.client('s3')
+
 # Import secret from env
 load_dotenv()
 
