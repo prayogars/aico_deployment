@@ -59,7 +59,7 @@ def job_processing(file_path, meta_data_cols: list):
         - file_path: CSV document of job listings
         - meta_data_cols: Column names that will be used for filtering 
     """
-    loader_csv = CSVLoader(file_path, metadata_columns=meta_data_cols, encoding="utf-8", csv_args={"delimiter": ","})
+    loader_csv = CSVLoader(file_path, metadata_columns=meta_data_cols, encoding="utf-8", csv_args={"delimiter": ";"})
     docs = loader_csv.load()
     all_contents = [post for post in docs]
     chunks = SPLITTER.split_documents(all_contents)
