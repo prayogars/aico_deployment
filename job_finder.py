@@ -8,7 +8,6 @@ from google import genai
 from langchain_chroma import Chroma
 from dotenv import load_dotenv
 import os
-import chromadb
 
 from pdfminer.high_level import extract_text
 import re
@@ -64,17 +63,12 @@ def job_processing(file_path, meta_data_cols: list):
     docs = loader_csv.load()
     all_contents = [post for post in docs]
     chunks = SPLITTER.split_documents(all_contents)
-
-    remote_client = chromadb.HttpClient(
-        host="13.212.26.129",
-        port=8000,
-        ssl=False
-    )
     
     db_dynamic = Chroma.from_documents(
-        client=remote_client,
         documents=chunks,
-        embedding=embedding_model_hf
+        embedding=embedding_model_hf,
+        host="13.212.26.129",
+        port=8000
     )
     print("Stored to vector db using Hugging Face.")
         
@@ -108,17 +102,12 @@ def match_cv_to_jobs(cv_path: str, value_to_extract: str):
     - value_to_extract: intended position that will be filtered. 
     """
     cv_profile = extract_cv(cv_path)
-
-    remote_client = chromadb.HttpClient(
-        host="13.212.26.129",
-        port=8000,
-        ssl=False
-    )
     
     # Load index  
     dynamic_store = Chroma(
-        client=remote_client,
         embedding_function=embedding_model_hf,
+        host="13.212.26.129",
+        port=8000
     )
 
     # Find matching job
