@@ -22,6 +22,11 @@ load_dotenv()
 # We set the Google API Key for authentication when using Google's AI models. This key is necessary to access the services and is kept secret to prevent unauthorized use.
 # Ensure you keep the API Key secret in real projects to prevent others from stealing your quota.
 os.environ['GEMINI_API_KEY'] = os.getenv('GEMINI_API_KEY')
+os.environ['AWS_IP_ADDRESS'] = os.getenv('AWS_IP_ADDRESS')
+os.environ['AWS_PORT'] = os.getenv('AWS_PORT')
+
+AWS_IP_ADDRESS = os.environ['AWS_IP_ADDRESS']
+AWS_PORT = os.environ['AWS_PORT']
 GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -67,8 +72,8 @@ def job_processing(file_path, meta_data_cols: list):
     db_dynamic = Chroma.from_documents(
         documents=chunks,
         embedding=embedding_model_hf,
-        host="13.212.26.129",
-        port=8000
+        host=AWS_IP_ADDRESS,
+        port=AWS_PORT
     )
     print("Stored to vector db using Hugging Face.")
         
@@ -106,8 +111,8 @@ def match_cv_to_jobs(cv_path: str, value_to_extract: str):
     # Load index  
     dynamic_store = Chroma(
         embedding_function=embedding_model_hf,
-        host="13.212.26.129",
-        port=8000
+        host=AWS_IP_ADDRESS,
+        port=AWS_PORT
     )
 
     # Find matching job
